@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>JSVAPP v0.5</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f4f6; margin: 0; padding: 0; }
+    section { padding: 1rem; margin: 1rem auto; max-width: 600px; background: white; border-radius: 1rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    button { background: #f97316; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; cursor: pointer; }
+    button:hover { background: #ea580c; }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<section id="aprobacion-envio">
+  <h2>Aprobación de Cotización</h2>
+  <div class="text-sm" id="vista-previa-cotizacion">
+    <p><strong>Pieza:</strong> Compresor A/C Aveo</p>
+    <p><strong>Modelo:</strong> Chevrolet Aveo 2008-2012</p>
+    <p><strong>Precio:</strong> $1,800 MXN</p>
+    <p><strong>Incluye garantía:</strong> Sí, 5 días</p>
+    <p><strong>Tipo de entrega:</strong> Envío gratis a todo México</p>
+  </div>
+
+  <button onclick="aprobarEnvio()">Aprobar y Enviar</button>
+
+  <div class="mt-4 hidden" id="registro-exito">
+    <p style="color: green; font-weight: bold;">¡Cotización enviada y registrada con éxito!</p>
+  </div>
+
+  <hr class="my-4">
+  <h3 class="text-sm">Últimos registros:</h3>
+  <ul class="text-xs mt-2" id="log-envios">
+  </ul>
+</section>
+
+<script>
+  function aprobarEnvio() {
+    const log = document.getElementById("log-envios");
+    const now = new Date().toLocaleString();
+    const item = document.createElement("li");
+    item.textContent = `[${now}] Cotización compresor Aveo enviada.`;
+    log.prepend(item);
+    document.getElementById("registro-exito").classList.remove("hidden");
+  }
+</script>
+
+</body>
+</html>
