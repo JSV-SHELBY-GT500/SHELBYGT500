@@ -1,0 +1,121 @@
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
+
+# Crear nueva presentación
+prs = Presentation()
+prs.slide_width = Inches(16)
+prs.slide_height = Inches(9)
+
+def add_full_slide(title, paragraphs):
+    slide = prs.slides.add_slide(prs.slide_layouts[5])
+    title_box = slide.shapes.title
+    title_box.text = title
+    title_box.text_frame.paragraphs[0].font.size = Pt(44)
+    title_box.text_frame.paragraphs[0].font.bold = True
+    title_box.text_frame.paragraphs[0].font.color.rgb = RGBColor(255, 165, 0)
+
+    left = Inches(1)
+    top = Inches(1.5)
+    width = Inches(14)
+    height = Inches(7)
+    content_box = slide.shapes.add_textbox(left, top, width, height)
+    tf = content_box.text_frame
+    tf.word_wrap = True
+
+    for p in paragraphs:
+        para = tf.add_paragraph()
+        para.text = p
+        para.font.size = Pt(22)
+        para.font.color.rgb = RGBColor(255, 255, 255)
+
+# Slides con contenido completo
+add_full_slide("JSV-AUTOPARTES – REPORTE GENERAL", [
+    "Modelo: Honda Civic 1.7L A/T 2002"
+])
+
+add_full_slide("Cotizaciones Automáticas", [
+    "WhatsApp: 6",
+    "Inbox (Messenger): 5",
+    "Total: 11 cotizaciones automáticas",
+    "Piezas generadas desde captura: Alternador, Caja de fusibles, Bobina, Módulo control crucero, Filtro, Bomba hidráulica"
+])
+
+add_full_slide("Registro de Piezas", [
+    "Piezas registradas ayer: 41",
+    "Modo de registro: Captura visual de foto confirmada por admin mediante notificación móvil",
+    "Piezas listas para publicación hoy: 41",
+    "Valor total para publicación en Mercado Libre: $74,300 MXN"
+])
+
+add_full_slide("Software en Funcionamiento", [
+    "JSVAPP: Control de captura, edición, cotización y publicación",
+    "SHELBY GT500 PC: Automatización, vinculación Drive, formatos ML",
+    "Funciones activas: reconocimiento visual, conexión a Inbox/WhatsApp, generación de publicaciones, control total desde PC"
+])
+
+add_full_slide("Toyota Camry 2.2L A/T 1994 – Aplicación del Sistema", [
+    "Mismo flujo será aplicado:",
+    "- Captura de piezas montadas",
+    "- Eliminación automática de fondo",
+    "- Fotos por todos los lados",
+    "- Video de motor funcionando",
+    "- Publicación automatizada desde app"
+])
+
+add_full_slide("Vehículos Disponibles para Procesar", [
+    "1. Honda Civic 1.7L A/T 2002",
+    "2. Toyota Camry 2.2L A/T 1994",
+    "3. Chrysler 200 2.4L A/T 2012",
+    "4. Chevrolet Aveo 1.6L STD 2008",
+    "5. Ford Econoline E350 5.4L A/T 2000",
+    "6. Honda Accord Coupé 2.2L A/T 1994",
+    "Meta: cubrir piezas completas por vehículo"
+])
+
+add_full_slide("Partes Pendientes – Honda Civic", [
+    "Cableado completo, arneses, tapas menores, tornillería, interiores menores, rieles, sensores y soportes metálicos"
+])
+
+add_full_slide("Ventajas del Sistema Automatizado", [
+    "• Ahorro de tiempo",
+    "• Reducción de errores humanos",
+    "• Cotizaciones en menos de 1 minuto",
+    "• Fotos limpias, consistentes",
+    "• Generación simultánea de todos los formatos",
+    "• Gestión central desde app"
+])
+
+add_full_slide("Flujo Completo Desde Foto Hasta Publicación", [
+    "1. Captura de pieza montada",
+    "2. Eliminación automática de fondo",
+    "3. Generación de descripción + precio",
+    "4. Formato de publicación",
+    "5. Archivo oficial ML completado",
+    "6. Publicación automática o agendada"
+])
+
+add_full_slide("Proyecciones Inmediatas", [
+    "• Finalizar Honda Civic 2002",
+    "• Iniciar Toyota Camry 1994",
+    "• Activar Chrysler 200 y Aveo",
+    "• Vincular SHELBY a WhatsApp y Messenger",
+    "• Ampliar reconocimiento visual con análisis de ángulos"
+])
+
+add_full_slide("Resumen Financiero Estimado", [
+    "Total valor piezas Civic: $74,300 MXN",
+    "Estimado Toyota Camry: $75,000 MXN",
+    "Proyección total actual: $149,300 MXN",
+    "Ventas reales confirmadas:",
+    "- Medallón Aveo: $2,000",
+    "- Pedal Chrysler: $1,200",
+    "- Intermitente Chrysler (ML): $630",
+    "Total recibido: $3,830 MXN"
+])
+
+# Guardar PDF
+pptx_final_path = "/mnt/data/JSV_PRESENTACION_REPORTE_COMPLETO_FINAL.pdf"
+prs.save(pptx_final_path)
+
+pptx_final_path
