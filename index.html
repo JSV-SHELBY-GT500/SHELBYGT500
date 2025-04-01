@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSV Cotizador Entrada</title>
+</head>
+<body>
+  <h2>JSV Cotizador Webhook</h2>
+  <p>Esta página está activa y lista para recibir entradas estructuradas.</p>
+  <p>Última búsqueda recibida:</p>
+  <pre id="busqueda">Esperando entrada...</pre>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    let texto = "";
+    for (const [key, value] of params.entries()) {
+      texto += key + "=" + value + " | ";
+    }
+    document.getElementById("busqueda").innerText = texto || "Sin parámetros aún.";
+  </script>
+</body>
+</html>
